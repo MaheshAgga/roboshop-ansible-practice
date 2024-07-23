@@ -8,10 +8,10 @@
       name: remi-release-8.rpm
       description: REMI repo
       
-  # - name: install redis remi
-  #   ansible.builtin.package:
-  #     name: redis:remi-6.2
-  #     state: present
+  - name: install redis remi
+    ansible.builtin.package:
+      name: redis:remi-6.2
+      state: present
 
   - name: enable redis remi
     ansible.builtin.service: 
