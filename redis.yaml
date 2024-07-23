@@ -4,3 +4,23 @@
   tasks:
   - name: install repo file
     ansible.builtin.command: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+
+  - name: enable redis:remi-6.2
+    ansible.builtin.command: redis:remi-6.2 -y
+
+  - name: install redis
+    ansible.builtin.package:
+      name: redis
+      state: present
+  
+  - name: replace module
+    ansible.builtin.replace:
+      path: /etc/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+
+  - name: enable and start redis
+    ansible.builtin.service:
+      name: redis
+      state: started
+      enabled: yes
