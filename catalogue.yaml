@@ -62,6 +62,9 @@
     ansible.builtin.debug:
       msg: "count is {{product_count}}"
 
+  - name: load catalogue data
+    ansible.builtin.command: mongo --host mongodb.roboshopin.site </app/schema/catalogue.js
+
   #  - name: start and enable service
   #    ansible.builtin.service:
   #      name: catalogue
