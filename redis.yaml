@@ -3,10 +3,10 @@
   become: yes
   tasks:
   - name: install repository file
-    ansible.builtin.yum_repository: 
-      baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-      name: remi-release-8.rpm
-      description: remi-release-8.rpm
+    ansible.builtin.dnf: 
+      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      stete: present
+      
 
   - name: enable redis remi
     ansible.builtin.command: dnf module enable redis:remi-6.2 -y
