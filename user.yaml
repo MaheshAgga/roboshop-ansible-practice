@@ -37,7 +37,7 @@
 
   - name: copy user service
     ansible.builtin.copy:
-      src: /user.service
+      src: user.service
       dest: /etc/systemd/system/user.service
 
   - name: daemon-reload 
@@ -46,7 +46,7 @@
 
   - name: mongodb.repo copy
     ansible.builtin.copy:
-      src: /mongodb.repo
+      src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
 
   - name: mongodb-org-shell client install
