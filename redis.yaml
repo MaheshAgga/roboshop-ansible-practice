@@ -5,6 +5,8 @@
   - name: install repository file
     ansible.builtin.yum_repository: 
       baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+      name: remi-release-8.rpm
+      state: present
 
   - name: enable redis:remi-6.2
     ansible.builtin.command: redis:remi-6.2 -y
