@@ -44,12 +44,6 @@
     ansible.builtin.systemd_service:
        daemon-reload: true
 
-  #  - name: start and enable service
-  #    ansible.builtin.service:
-  #      name: catalogue
-  #      state: started
-  #      enabled: yes
-
   - name: copy mongodb.repo 
     ansible.builtin.copy:
       src: mongodb.repo
@@ -59,3 +53,17 @@
     ansible.builtin.package:
       name: mongodb-org-shell
       state: present
+
+  - name: get the catagories product count
+    ansible.builtin.command: mongo --host mongodb.roboshopin.site --quiet --eval 'db = db.getSiblings("catalogue");db.products.cont()'
+    register: product_count
+
+  - name: print the value
+    ansible.builtin.debug:
+      msg: "count is :{{product.count}}"
+
+  #  - name: start and enable service
+  #    ansible.builtin.service:
+  #      name: catalogue
+  #      state: started
+  #      enabled: yes
