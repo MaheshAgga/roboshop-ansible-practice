@@ -56,7 +56,7 @@
 
   - name: get the catagories product count
     ansible.builtin.command: mongo --host mongodb.roboshopin.site --quiet --eval 'db = db.getSiblingDB("catalogue");db.products.count()'
-      register: product_count
+    register: product_count
 
   - name: print the value
     ansible.builtin.debug:
