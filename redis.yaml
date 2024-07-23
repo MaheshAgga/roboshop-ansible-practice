@@ -4,20 +4,12 @@
   tasks:
   - name: install repository file
     ansible.builtin.yum_repository: 
-      baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+      baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
       name: remi-release-8.rpm
       description: REMI repo
-      
-  - name: install redis remi
-    ansible.builtin.package:
-      name: redis:remi-6.2
-      state: present
 
   - name: enable redis remi
-    ansible.builtin.service: 
-      name: redis:remi-6.2
-      state: started
-      enabled: yes
+    ansible.builtin.command: dnf module enable redis:remi-6.2 -y
 
   - name: install redis
     ansible.builtin.package:
