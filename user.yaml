@@ -61,11 +61,11 @@
   - name: print value
     ansible.builtin.debug:
       msg: "product count: {{product_count}}"
-    when: product_count.stdout_lines == 0
     
+
   - name: load user data
     ansible.builtin.command: mongo --host mongodb.roboshopin.site < /app/schema/user.js
-    
+    when: product_count.stdout_lines == 0
 
  
     
