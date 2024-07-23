@@ -10,50 +10,52 @@
       name: nodejs
       state: present
 
-  # - name: add user
-  #   ansible.builtin.user:
-  #     name : roboshop
+  - name: add user
+    ansible.builtin.user:
+      name : roboshop
 
-  # - name: create a directory
-  #   ansible.builtin.file:
-  #     path: /app
-  #     state: directory
+  - name: create a directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
 
-  # - name: download a app
-  #   ansible.builtin.get_url:
-  #     url : curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
-  #     dest: /app
+  - name: download a app
+    ansible.builtin.get_url:
+      url : https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+      dest: /tmp
 
-  # - name: unzip a file
-  #   ansible.builtin.unarchive:
-  #     src: /app
-  #     dest: /tmp/catalogue.zip
+   - name: unzip a file
+    ansible.builtin.unarchive:
+      src: /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes
 
-  # - name: install npm
-  #   ansible.builtin.command: npm install
+   - name: install npm
+     ansible.builtin.command: npm install
+     args:
+      chdir: /app
 
-  # - name: copy catalogue service module
-  #   ansible.builtin.copy:
-  #     src: catalogue.service
-  #     dest: /etc/systemd/system/catalogue.service
+   - name: copy catalogue service module
+     ansible.builtin.copy:
+       src: catalogue.service
+       dest: /etc/systemd/system/catalogue.service
 
-  # - name: daemon reload
-  #   ansible.builtin.systemd_service:
-  #     name : daemon-reload
-  #     state: reloaded
+   - name: daemon reload
+     ansible.builtin.systemd_service:
+       daemon-reload: true
 
-  # - name: start and enable service
-  #   ansible.builtin.service:
-  #     name: catalogue
-  #     state: started
-  #     enabled: yes
+  #  - name: start and enable service
+  #    ansible.builtin.service:
+  #      name: catalogue
+  #      state: started
+  #      enabled: yes
 
-  # - name: copy mongo.repo 
-  #   ansible.builtin.copy:
-  #     src: mongodb.repo
-  #     dest: /etc/yum.repos.d/mongodb.repo
+  - name: copy mongodb.repo 
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
 
-  # - name: install mongodb client package
-  #   ansible.builtin.package:
-  #     name: mongodb-org-shell
-  #     state: present
+  - name: install mongodb client package
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
