@@ -16,7 +16,8 @@
   - name: enable redis remi
     ansible.builtin.service: 
       name: redis:remi-6.2
-      state: latest
+      state: started
+      enabled: yes
 
   - name: install redis
     ansible.builtin.package:
