@@ -60,7 +60,7 @@
 
   - name: print the count
     ansible.builtin.debug:
-      msg: "count is {{product.count}}"
+      msg: "count is {{product_count}}"
 
   #  - name: start and enable service
   #    ansible.builtin.service:
