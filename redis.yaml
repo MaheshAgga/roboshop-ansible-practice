@@ -1,0 +1,6 @@
+- name: redis
+  hosts: redis
+  become: yes
+  tasks:
+  - name: install repo file
+    ansible.builtin.command: https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
