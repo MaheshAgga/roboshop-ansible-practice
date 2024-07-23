@@ -5,7 +5,7 @@
   - name: install repository file
     ansible.builtin.dnf: 
       name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-      stete: present
+      state: present
       
 
   - name: enable redis remi
