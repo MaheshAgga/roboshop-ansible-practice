@@ -58,9 +58,9 @@
     ansible.builtin.command: mongo --host mongodb.roboshopin.site --quiet --eval 'db = db.getSiblingDB("catalogue");db.products.count()'
     register: product_count
 
-  - name: print the value
+  - name: print the count
     ansible.builtin.debug:
-      msg: "count is :{{product.count}}"
+      msg: "count is {{product.count}}"
 
   #  - name: start and enable service
   #    ansible.builtin.service:
